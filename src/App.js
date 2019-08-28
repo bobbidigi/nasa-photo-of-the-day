@@ -5,11 +5,12 @@ import PhotoCard from './components/PhotoCard'
 
 function App() {
 
-  const [cardState, cardSetter] = useState([])
+  const [cardState, cardSetter] = useState({})
+  const [date, dateSetter] = useState('2019-08-15')
 
   useEffect(() => {
     // Make a request for a user with a given ID
-    axios.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+    axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`)
       .then( res =>{
         // handle success
         console.log(res);
@@ -20,16 +21,26 @@ function App() {
         // handle error
         console.log(error);
       })
-  },[])
+  },[date])
 
 
   return (
     <div className="App">
-     <PhotoCard 
-      title={cardState.title}
-      url={cardState.url}
-      explanation={cardState.explanation}
-     />
+
+
+      {cardState
+       ? <PhotoCard 
+          title={cardState.title}
+          url={cardState.url}
+          explanation={cardState.explanation}
+          date={cardState.date}
+        /> : <div>loading</div>
+     }
+     <form>
+       <input onChange={(event) => dateSetter(event.target.value)} type={"date"}>
+
+       </input>
+     </form>
     </div>
   );
 }
