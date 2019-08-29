@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
-import "./App.css";
+import "./App.scss";
 import PhotoCard from './components/PhotoCard'
 
 function App() {
@@ -27,20 +27,22 @@ function App() {
   return (
     <div className="App">
 
-
-      {cardState
-       ? <PhotoCard 
-          title={cardState.title}
-          url={cardState.url}
-          explanation={cardState.explanation}
-          date={cardState.date}
-        /> : <div>loading</div>
-     }
-     <form>
+      <form>
        <input onChange={(event) => dateSetter(event.target.value)} type={"date"}>
-
        </input>
-     </form>
+      </form>
+
+      <div className="photo-cards">
+        {cardState
+        ? <PhotoCard 
+            title={cardState.title}
+            url={cardState.url}
+            explanation={cardState.explanation}
+            date={cardState.date}
+          /> : <div>loading</div>
+          }
+      </div>    
+     
     </div>
   );
 }
