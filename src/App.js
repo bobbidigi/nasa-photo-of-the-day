@@ -6,7 +6,7 @@ import PhotoCard from './components/PhotoCard'
 function App() {
 
   const [cardState, cardSetter] = useState({})
-  const [date, dateSetter] = useState('2019-08-15')
+  const [date, dateSetter] = useState('')
 
   useEffect(() => {
     // Make a request for a user with a given ID
@@ -28,8 +28,7 @@ function App() {
     <div className="App">
 
       <form>
-       <input onChange={(event) => dateSetter(event.target.value)} type={"date"}>
-       </input>
+       <input onChange={(event) => dateSetter(event.target.value)} type={"date"}></input>
       </form>
 
       <div className="photo-cards">
@@ -39,6 +38,7 @@ function App() {
             url={cardState.url}
             explanation={cardState.explanation}
             date={cardState.date}
+            type={cardState.media_type}
           /> : <div>loading</div>
           }
       </div>    
