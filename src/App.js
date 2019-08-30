@@ -2,8 +2,14 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import "./App.scss";
 import PhotoCard from './components/PhotoCard'
+import { Input } from 'semantic-ui-react'
+
+
 
 function App() {
+
+  
+    
 
   const [cardState, cardSetter] = useState({})
   const [date, dateSetter] = useState('')
@@ -15,21 +21,17 @@ function App() {
         // handle success
         console.log(res);
         cardSetter(res.data);
-      }
-      )
-      .catch(function (error) {
-        // handle error
-        console.log(error);
       })
   },[date])
 
+  
 
   return (
     <div className="App">
 
-      <form>
-       <input onChange={(event) => dateSetter(event.target.value)} type={"date"}></input>
-      </form>
+      <Input onChange={(event) => dateSetter(event.target.value)} type="date"/>
+
+      {/* <input  type={"date"}></input> */}
 
       <div className="photo-cards">
         {cardState

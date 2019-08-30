@@ -7,7 +7,7 @@ function PhotoCard(props){
   return (
     <Card className="photo-card">
       {props.type === 'video' ?
-        (<iframe src={props.url}></iframe>)
+        (<iframe title={props.title} src={props.url}></iframe>)
         :
          (<Image src={props.url} alt="nasa"/>)}   
       <Card.Content>
